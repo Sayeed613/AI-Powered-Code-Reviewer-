@@ -17,8 +17,10 @@ function App() {
   }, []);
 
   async function reviewCode() {
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     try {
-      const response = await axios.post("http://localhost:5000/ai/get-review", { code });
+      const response = await axios.post(`${API_URL}/ai/get-review`, { code });
       setReview(response.data);
     } catch (error) {
       setReview("🚨 Error: Unable to fetch review. Please try again.");
